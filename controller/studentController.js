@@ -1,21 +1,21 @@
 const Student = require("../models/student");
 const IdentityCard = require("../models/identity");
 
-// const addEntries = async (req,res)=>{
-//     try{
-//         const {name,email} = req.body;
-//         const firstTable = FirstTable.create({
-//             name:name,
-//             email:email
-//         })
+const addEntries = async (req,res)=>{
+    try{
+        const {name,email} = req.body;
+        const student  = await Student.create({
+            name:name,
+            email:email
+        })
       
-//         res.status(201).send(`entries added with name ${name}`);
-//     }catch(err){
-//         console.log(err);
-//         res.status(500).send("entries not created");
-//     }
+        res.status(201).send(`entries added with name ${name}`);
+    }catch(error){
+       
+        res.status(500).json({'error':error.message})
+    }
 
-// }
+}
 
 
 const addValuesToSecTable = async (req,res)=>{
@@ -35,7 +35,8 @@ const addValuesToSecTable = async (req,res)=>{
 }
 
 module.exports = {
-    addValuesToSecTable
+    addValuesToSecTable,
+    addEntries
 }
 
 

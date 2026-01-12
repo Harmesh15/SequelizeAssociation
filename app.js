@@ -1,6 +1,7 @@
 const express = require("express");
 const db = require("./utils/db-connection")
 const studentRoutes = require("./routes/studentRoute");
+const courseRoutes = require("./routes/courseRoute");
 
 //  models
 require("./models");
@@ -13,8 +14,9 @@ app.get("/",(req,res)=>{
 })
 
 app.use("/student",studentRoutes);
+app.use("/courses",courseRoutes);
 
-db.sync({force:true}).then(()=>{
+db.sync({force:false}).then(()=>{
     app.listen(3000,(err)=>{
     console.log("Server is running");
 })

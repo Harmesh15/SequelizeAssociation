@@ -1,0 +1,16 @@
+const sequelize = require("../utils/db-connection");
+const { DataTypes } = require("sequelize");
+
+const courses = sequelize.define('courses',{
+    id:{
+        primaryKey:true,
+        autoIncrement:true,
+        type:DataTypes.INTEGER,
+    },
+    name:{
+        type:DataTypes.STRING,
+        allowNull:false
+    }
+})
+
+module.exports = courses;
